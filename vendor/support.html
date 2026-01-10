@@ -1,1 +1,28 @@
+<h2>Support / Help</h2>
+
+<textarea id="message" placeholder="Describe your issue"></textarea><br><br>
+<button id="send">Send</button>
+<p id="msg"></p>
+
+<script type="module">
+  import { auth } from "../firebase.js";
+  import { getFirestore, addDoc, collection } from
+    "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+  const db = getFirestore();
+
+  send.onclick = async () => {
+    const user = auth.currentUser;
+    if (!user) return;
+
+    await addDoc(collection(db, "support"), {
+      vendorId: user.uid,
+      message: message.value,
+      createdAt: Date.now()
+    });
+
+    msg.innerText = "✅ Sent to support";
+    message.value = "";
+  };
+</script>
 

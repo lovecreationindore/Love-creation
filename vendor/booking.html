@@ -1,1 +1,26 @@
+<h2>My Bookings</h2>
+<ul id="list"></ul>
+
+<script type="module">
+  import { auth } from "../firebase.js";
+  import { getFirestore, collection, query, where, getDocs } from
+    "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+  const db = getFirestore();
+
+  auth.onAuthStateChanged(async user => {
+    if (!user) return;
+
+    const q = query(
+      collection(db, "bookings"),
+      where("vendorId", "==", user.uid)
+    );
+
+    const snap = await getDocs(q);
+    snap.forEach(doc => {
+      const b = doc.data();
+      list.innerHTML += `<li>${b.customerName} – ${b.date}</li>`;
+    });
+  });
+</script>
 

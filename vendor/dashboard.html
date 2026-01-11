@@ -1,19 +1,13 @@
-<h2>Vendor Dashboard</h2>
-
+<!DOCTYPE html>
+<html>
+<head><title>Vendor</title></head>
+<body>
+<h1>Vendor Dashboard</h1>
 <ul>
-  <li><a href="portfolio.html">📸 My Portfolio & Rates</a></li>
-  <li><a href="bookings.html">📅 My Bookings</a></li>
-  <li><a href="support.html">🆘 Support / Help</a></li>
-  <li><button id="logout">Logout</button></li>
+  <li>Upload portfolio</li>
+  <li>Set price</li>
+  <li>View bookings</li>
+  <li>Support</li>
 </ul>
-
-<script type="module">
-  import { auth } from "../firebase.js";
-  import { signOut } from
-    "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-
-  document.getElementById("logout").onclick = async () => {
-    await signOut(auth);
-    window.location.href = "/vendor/login.html";
-  };
-</script>
+</body>
+</html>
